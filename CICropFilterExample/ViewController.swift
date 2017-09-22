@@ -75,9 +75,15 @@ class ViewController: UIViewController {
         let height = CGFloat(Float(heightTextField.text!)!) <= 0 ? CGFloat(1.0) : CGFloat(Float(heightTextField.text!)!)
         
         let cropRect = CGRect(x: originX, y: originY, width: width, height: height)
+        // Transform for changing coordinate system
+        let scale = CGAffineTransform(scaleX: 1, y: -1)
+        let translation = CGAffineTransform(translationX: 0, y: originalImageView.image!.size.height)
+        let concatenated = scale.concatenating(translation)
+        let transformedCropRect = cropRect.applying(concatenated)
         let cropFilter = CIFilter(name: "CICrop", withInputParameters: [kCIInputImageKey: imageCIForm,
-                                                                        "inputRectangle": cropRect])
+                                                                        "inputRectangle": transformedCropRect])
         let croppedCIImage = (cropFilter?.outputImage)!
+        
         let croppedCGImage = context.createCGImage(croppedCIImage, from: croppedCIImage.extent)!
         
         return UIImage(cgImage: croppedCGImage)
