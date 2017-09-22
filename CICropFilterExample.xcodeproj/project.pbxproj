@@ -12,6 +12,7 @@
 		B4E097AF1F74C07E00F6BFCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E097AD1F74C07E00F6BFCF /* Main.storyboard */; };
 		B4E097B11F74C07E00F6BFCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E097B01F74C07E00F6BFCF /* Assets.xcassets */; };
 		B4E097B41F74C07E00F6BFCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4E097B21F74C07E00F6BFCF /* LaunchScreen.storyboard */; };
+		B4E097BD1F74CAEC00F6BFCF /* cropSample.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B4E097BC1F74C55200F6BFCF /* cropSample.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B4E097B01F74C07E00F6BFCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4E097B31F74C07E00F6BFCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4E097B51F74C07E00F6BFCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4E097BC1F74C55200F6BFCF /* cropSample.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cropSample.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				B4E097A91F74C07E00F6BFCF /* AppDelegate.swift */,
 				B4E097AB1F74C07E00F6BFCF /* ViewController.swift */,
 				B4E097AD1F74C07E00F6BFCF /* Main.storyboard */,
+				B4E097BC1F74C55200F6BFCF /* cropSample.jpeg */,
 				B4E097B01F74C07E00F6BFCF /* Assets.xcassets */,
 				B4E097B21F74C07E00F6BFCF /* LaunchScreen.storyboard */,
 				B4E097B51F74C07E00F6BFCF /* Info.plist */,
@@ -124,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4E097B41F74C07E00F6BFCF /* LaunchScreen.storyboard in Resources */,
+				B4E097BD1F74CAEC00F6BFCF /* cropSample.jpeg in Resources */,
 				B4E097B11F74C07E00F6BFCF /* Assets.xcassets in Resources */,
 				B4E097AF1F74C07E00F6BFCF /* Main.storyboard in Resources */,
 			);
@@ -277,11 +281,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A588LMT325;
 				INFOPLIST_FILE = CICropFilterExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.histools.CICropFilterExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -292,11 +297,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A588LMT325;
 				INFOPLIST_FILE = CICropFilterExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.histools.CICropFilterExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
