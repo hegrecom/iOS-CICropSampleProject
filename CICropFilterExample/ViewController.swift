@@ -51,6 +51,7 @@ class ViewController: UIViewController {
         //Notification for getting keyboard frame
         NotificationCenter.default.addObserver(self, selector: #selector(moveContentsUp(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(moveContentDown(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCroppedImage(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
     }
 
     func configureGestureRecognizer() {
@@ -68,13 +69,22 @@ class ViewController: UIViewController {
 
     func crop(image: UIImage) -> UIImage {
         let imageCIForm = CIImage(image: image)!
-        let cropRect = CGRect(x: 0, y: 0, width: 0, height: 0)
+        let originX = CGFloat(Float(originXTextField.text!)!)
+        let originY = CGFloat(Float(originYTextField.text!)!)
+        let width = CGFloat(Float(widthTextField.text!)!) <= 0 ? CGFloat(1.0) : CGFloat(Float(widthTextField.text!)!)
+        let height = CGFloat(Float(heightTextField.text!)!) <= 0 ? CGFloat(1.0) : CGFloat(Float(heightTextField.text!)!)
+        
+        let cropRect = CGRect(x: originX, y: originY, width: width, height: height)
         let cropFilter = CIFilter(name: "CICrop", withInputParameters: [kCIInputImageKey: imageCIForm,
                                                                         "inputRectangle": cropRect])
         let croppedCIImage = (cropFilter?.outputImage)!
         let croppedCGImage = context.createCGImage(croppedCIImage, from: croppedCIImage.extent)!
         
         return UIImage(cgImage: croppedCGImage)
+    }
+    
+    @objc func updateCroppedImage(_ notification: Notification) {
+        croppedImageView.image = crop(image: originalImageView.image!)
     }
     
     @objc func moveContentsUp(_ notification : Notification) {
@@ -90,14 +100,6 @@ class ViewController: UIViewController {
 }
 
 extension ViewController : UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("begin editing")
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("end editing")
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var textFieldText = textField.text ?? ""
         textFieldText.replaceSubrange(Range(range, in: textField.text ?? "")!, with: string)
@@ -169,7 +171,7 @@ extension ViewController : UITextFieldDelegate {
                     heightTextField.text = heightMax.text
                     return false
                 } else if number < 0 {
-                    heightTextField.text = heightMax.text
+                    heightTextField.text = "0"
                     return false
                 } else {
                     // remove '0' if it is ahead of number
